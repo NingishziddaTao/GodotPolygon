@@ -1,0 +1,89 @@
+[gd_scene load_steps=14 format=2]
+
+[ext_resource path="res://Cyfer16P/Mats/swing.shader" type="Shader" id=1]
+[ext_resource path="res://Cyfer16P/Mats/cyfer16.png" type="Texture" id=2]
+[ext_resource path="res://Cyfer16P/cyfer16p.gd" type="Script" id=3]
+[ext_resource path="res://Cyfer16P/Mats/light64.png" type="Texture" id=5]
+[ext_resource path="res://AREA_2D/AREA_2D.tscn" type="PackedScene" id=6]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 7, 7 )
+
+[sub_resource type="OccluderPolygon2D" id=2]
+polygon = PoolVector2Array( 2.53799, -3.92187, -0.345768, -4.31963, -2.43401, -2.52971, -6.21274, -0.540909, -3.82618, 11.3919, 5.22288, 9.40311, 4.52679, -2.52971, 2.83632, -1.93307 )
+
+[sub_resource type="ShaderMaterial" id=3]
+shader = ExtResource( 1 )
+shader_param/Distance = 0.2
+shader_param/Speed = 6.0
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 2 )
+region = Rect2( 0, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=5]
+atlas = ExtResource( 2 )
+region = Rect2( 64, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=6]
+atlas = ExtResource( 2 )
+region = Rect2( 128, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=7]
+atlas = ExtResource( 2 )
+region = Rect2( 192, 0, 64, 64 )
+
+[sub_resource type="SpriteFrames" id=8]
+animations = [ {
+"frames": [ SubResource( 4 ), SubResource( 5 ), SubResource( 6 ), SubResource( 7 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[node name="Cyfer16p" type="KinematicBody2D"]
+script = ExtResource( 3 )
+push = 200
+projectile = ExtResource( 6 )
+
+[node name="coll" type="CollisionShape2D" parent="."]
+position = Vector2( -0.315559, 0.157784 )
+shape = SubResource( 1 )
+
+[node name="cam" type="Camera2D" parent="."]
+position = Vector2( 0.845997, -23.2151 )
+current = true
+zoom = Vector2( 0.179, 0.208 )
+
+[node name="Light2D" type="Light2D" parent="."]
+z_index = 4
+texture = ExtResource( 5 )
+texture_scale = 1.4
+range_height = -296.8
+range_layer_max = 30
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+position = Vector2( 0.480656, -4.01389 )
+occluder = SubResource( 2 )
+
+[node name="axis" type="Node2D" parent="."]
+
+[node name="anim" type="AnimatedSprite" parent="axis"]
+pause_mode = 2
+material = SubResource( 3 )
+frames = SubResource( 8 )
+
+[node name="gun" type="Position2D" parent="axis"]
+position = Vector2( 9.24794, -6.66249 )
+
+[node name="eyebeam" type="Position2D" parent="."]
+position = Vector2( 0.682526, -5.03278 )
+
+[node name="line" type="Line2D" parent="eyebeam"]
+position = Vector2( -219.612, -115.617 )
+z_index = 2
+z_as_relative = false
+width = 2.0
+default_color = Color( 1, 0.4, 0.780392, 1 )
+begin_cap_mode = 1
+end_cap_mode = 1

@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://TransformBullet/TransformBullet.gd" type="Script" id=1]
+
+[node name="Bullet" type="Polygon2D"]
+polygon = PoolVector2Array( 19.3874, 1.01128, -31.5052, -8.56851, -19.5305, -0.186195, -30.3078, 8.19612 )
+script = ExtResource( 1 )

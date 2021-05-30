@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Bullet.gd" type="Script" id=1]
+
+[node name="Bullet" type="Polygon2D"]
+polygon = PoolVector2Array( 40, 0, 0, -8, -24, 0, 0, 8 )
+script = ExtResource( 1 )
+SPEED = 300.0
+
+[node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
+[connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]

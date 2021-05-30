@@ -1,0 +1,148 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Hud/decouple/monitor_label.vs" type="Script" id=1]
+[ext_resource path="res://Hud/Hud.gd" type="Script" id=2]
+[ext_resource path="res://Hud/fonts/Pixeled.ttf" type="DynamicFontData" id=3]
+
+[sub_resource type="DynamicFont" id=1]
+size = 18
+extra_spacing_top = -8
+extra_spacing_bottom = -8
+extra_spacing_space = 10
+font_data = ExtResource( 3 )
+
+[node name="Hud" type="CanvasLayer"]
+script = ExtResource( 2 )
+
+[node name="Monitor" type="Control" parent="."]
+margin_right = 200.0
+margin_bottom = 400.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="Monitor"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 0.388235 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Monitor"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 20.0
+margin_bottom = 184.0
+grow_horizontal = 0
+grow_vertical = 0
+custom_constants/separation = 0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label0" type="Label" parent="Monitor/VBoxContainer"]
+margin_right = 180.0
+margin_bottom = 73.0
+custom_fonts/font = SubResource( 1 )
+text = "
+"
+valign = 1
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label1" type="Label" parent="Monitor/VBoxContainer"]
+margin_top = 73.0
+margin_right = 180.0
+margin_bottom = 146.0
+custom_fonts/font = SubResource( 1 )
+text = "
+"
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label2" type="Label" parent="Monitor/VBoxContainer"]
+margin_top = 146.0
+margin_right = 180.0
+margin_bottom = 219.0
+custom_fonts/font = SubResource( 1 )
+text = "
+"
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label3" type="Label" parent="Monitor/VBoxContainer"]
+margin_top = 219.0
+margin_right = 180.0
+margin_bottom = 292.0
+custom_fonts/font = SubResource( 1 )
+text = "
+"
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label4" type="Label" parent="Monitor/VBoxContainer"]
+margin_top = 292.0
+margin_right = 180.0
+margin_bottom = 365.0
+custom_fonts/font = SubResource( 1 )
+text = "
+"
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label5" type="Label" parent="Monitor/VBoxContainer"]
+margin_top = 365.0
+margin_right = 180.0
+margin_bottom = 438.0
+custom_fonts/font = SubResource( 1 )
+text = "
+"
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label6" type="Label" parent="Monitor/VBoxContainer"]
+margin_top = 438.0
+margin_right = 180.0
+margin_bottom = 511.0
+custom_fonts/font = SubResource( 1 )
+text = "
+"
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label7" type="Label" parent="Monitor/VBoxContainer"]
+margin_top = 511.0
+margin_right = 180.0
+margin_bottom = 584.0
+custom_fonts/font = SubResource( 1 )
+text = "
+"
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="tree_entered" from="Monitor/VBoxContainer/Label0" to="Monitor/VBoxContainer/Label0" method="_on_Label_tree_entered"]
+[connection signal="tree_entered" from="Monitor/VBoxContainer/Label1" to="Monitor/VBoxContainer/Label1" method="_on_Label_tree_entered"]
+[connection signal="tree_entered" from="Monitor/VBoxContainer/Label2" to="Monitor/VBoxContainer/Label2" method="_on_Label_tree_entered"]
+[connection signal="tree_entered" from="Monitor/VBoxContainer/Label3" to="Monitor/VBoxContainer/Label3" method="_on_Label_tree_entered"]
+[connection signal="tree_entered" from="Monitor/VBoxContainer/Label4" to="Monitor/VBoxContainer/Label4" method="_on_Label_tree_entered"]
+[connection signal="tree_entered" from="Monitor/VBoxContainer/Label5" to="Monitor/VBoxContainer/Label5" method="_on_Label_tree_entered"]
+[connection signal="tree_entered" from="Monitor/VBoxContainer/Label6" to="Monitor/VBoxContainer/Label6" method="_on_Label_tree_entered"]
+[connection signal="tree_entered" from="Monitor/VBoxContainer/Label7" to="Monitor/VBoxContainer/Label7" method="_on_Label_tree_entered"]

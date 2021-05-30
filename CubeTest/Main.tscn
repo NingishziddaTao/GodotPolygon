@@ -1,0 +1,196 @@
+[gd_scene load_steps=19 format=2]
+
+[ext_resource path="res://KINEMATIC_BODY_2D/mats/k-circle.vs" type="Script" id=1]
+[ext_resource path="res://TileMap/TileMap.tscn" type="PackedScene" id=2]
+[ext_resource path="res://STATIC_BODY_2D/STATIC_BODY_2D.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Main.gd" type="Script" id=4]
+[ext_resource path="res://RIGID_BODY_2D/RIGID_BODY_2D.tscn" type="PackedScene" id=5]
+[ext_resource path="res://KINEMATIC_BODY_2D/mats/K-PolyBak.vs" type="Script" id=6]
+[ext_resource path="res://crossair.png" type="Texture" id=7]
+[ext_resource path="res://KINEMATIC_BODY_2D/KINEMATIC_BODY_2D.gd" type="Script" id=8]
+
+[sub_resource type="PhysicsMaterial" id=1]
+friction = 0.0
+
+[sub_resource type="Environment" id=2]
+background_mode = 4
+ambient_light_color = Color( 1, 1, 1, 1 )
+auto_exposure_enabled = true
+glow_enabled = true
+glow_intensity = 0.5
+glow_strength = 0.7
+glow_blend_mode = 0
+adjustment_brightness = 1.23
+adjustment_contrast = 3.06
+adjustment_saturation = 3.63
+
+[sub_resource type="GDScript" id=3]
+script/source = "extends StaticBody2D
+
+onready var start_position = position
+var velocity:Vector2
+export var SPEED:float = 200
+var speed = SPEED
+onready var circle_radius = $circle.shape.radius
+
+func _ready() -> void:
+    pass
+
+func _physics_process(delta: float) -> void:
+    pass
+    
+func _draw() -> void:
+    pass
+"
+
+[sub_resource type="CircleShape2D" id=4]
+radius = 15.0
+
+[sub_resource type="CircleShape2D" id=5]
+
+[sub_resource type="VisualScriptFunction" id=6]
+resource_name = "_draw"
+
+[sub_resource type="VisualScriptFunctionCall" id=7]
+_default_input_values = [ Vector2( 0, 0 ), 0.0, Color( 1, 1, 1, 1 ) ]
+base_type = "CollisionShape2D"
+argument_cache = {
+"args": [ {
+"class_name": "",
+"hint": 0,
+"hint_string": "",
+"name": "position",
+"type": 5,
+"usage": 7
+}, {
+"class_name": "",
+"hint": 0,
+"hint_string": "",
+"name": "radius",
+"type": 3,
+"usage": 7
+}, {
+"class_name": "",
+"hint": 0,
+"hint_string": "",
+"name": "color",
+"type": 14,
+"usage": 7
+} ],
+"default_args": [  ],
+"flags": 1,
+"id": 0,
+"name": "",
+"return": {
+"class_name": "",
+"hint": 0,
+"hint_string": "",
+"name": "",
+"type": 0,
+"usage": 7
+}
+}
+function = "draw_circle"
+
+[sub_resource type="VisualScriptPropertyGet" id=8]
+property = "shape"
+
+[sub_resource type="VisualScriptPropertyGet" id=9]
+_default_input_values = [ null ]
+set_mode = 2
+base_type = "CircleShape2D"
+base_script = ""
+type_cache = 3
+property = "radius"
+
+[sub_resource type="VisualScript" id=10]
+data = {
+"base_type": "CollisionShape2D",
+"functions": [ {
+"data_connections": [ 5, 0, 6, 0, 6, 0, 1, 1 ],
+"function_id": 0,
+"name": "_draw",
+"nodes": [ 0, Vector2( 172.84, 98.7654 ), SubResource( 6 ), 1, Vector2( 296.296, 172.84 ), SubResource( 7 ), 5, Vector2( -222.222, 246.914 ), SubResource( 8 ), 6, Vector2( 0, 222.222 ), SubResource( 9 ) ],
+"scroll": Vector2( -367.062, 47.8333 ),
+"sequence_connections": [ 0, 0, 1 ]
+}, {
+"data_connections": [  ],
+"function_id": -1,
+"name": "f_312843592",
+"nodes": [  ],
+"scroll": Vector2( -222.222, 0 ),
+"sequence_connections": [  ]
+} ],
+"is_tool_script": true,
+"signals": [  ],
+"variables": [ {
+"default_value": null,
+"export": false,
+"hint": 0,
+"hint_string": "",
+"name": "rad",
+"type": 0,
+"usage": 7
+} ],
+"vs_unify": true
+}
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource( 4 )
+
+[node name="RIGID_BODY_2D" parent="." instance=ExtResource( 5 )]
+position = Vector2( 744.416, 157.188 )
+mass = 0.102041
+physics_material_override = SubResource( 1 )
+gravity_scale = 19.78
+linear_damp = 0.0
+
+[node name="TileMap" parent="." instance=ExtResource( 2 )]
+tile_data = PoolIntArray( 327680, 0, 0, 327685, 0, 0, 327686, 0, 0, 327687, 0, 0, 327688, 0, 0, 327689, 0, 0, 327690, 0, 0, 327691, 0, 0, 327692, 0, 0, 327693, 0, 0, 327694, 0, 0, 327695, 0, 0, 327696, 0, 0, 327697, 0, 0, 327698, 0, 0, 327699, 0, 0, 327700, 0, 0, 327701, 0, 0, 327702, 0, 0, 327703, 0, 0, 327704, 0, 0, 327705, 0, 0, 327706, 0, 0, 327707, 0, 0, 327708, 0, 0, 327709, 0, 0, 327710, 0, 0, 327711, 0, 0, 327712, 0, 0, 327713, 0, 0, 327714, 0, 0, 327715, 0, 0, 327716, 0, 0, 327717, 0, 0, 327718, 0, 0, 327719, 0, 0, 327720, 0, 0, 327721, 0, 0, 327722, 0, 0, 327723, 0, 0, 327724, 0, 0, 327725, 0, 0, 327726, 0, 0, 327727, 0, 0, 327728, 0, 0, 327729, 0, 0, 327730, 0, 0, 327731, 0, 0, 327732, 0, 0, 327733, 0, 0, 327734, 0, 0, 327735, 0, 0, 327736, 0, 0, 327737, 0, 0, 327738, 0, 0, 327739, 0, 0, 327740, 0, 0, 327741, 0, 0, 458751, 0, 0, 393216, 0, 0, 393217, 0, 0, 393218, 0, 0, 393219, 0, 0, 393220, 0, 0, 393277, 0, 0, 524287, 0, 0, 458752, 0, 0, 458753, 0, 0, 458813, 0, 0, 589823, 0, 0, 524288, 0, 0, 524289, 0, 0, 524349, 0, 0, 655359, 0, 0, 589824, 0, 0, 589825, 0, 0, 589886, 0, 0, 720895, 0, 0, 655360, 0, 0, 655361, 0, 0, 655422, 0, 0, 786431, 0, 0, 720896, 0, 0, 720897, 0, 0, 720958, 0, 0, 851967, 0, 0, 786432, 0, 0, 786433, 0, 0, 786494, 0, 0, 917503, 0, 0, 851968, 0, 0, 851969, 0, 0, 852030, 0, 0, 983039, 0, 0, 917504, 0, 0, 917505, 0, 0, 917565, 0, 0, 1048575, 0, 0, 983040, 0, 0, 983041, 0, 0, 983101, 0, 0, 1114111, 0, 0, 1048576, 0, 0, 1048577, 0, 0, 1048637, 0, 0, 1179647, 0, 0, 1114112, 0, 0, 1114113, 0, 0, 1114173, 0, 0, 1179648, 0, 0, 1179649, 0, 0, 1179709, 0, 0, 1245184, 0, 0, 1245185, 0, 0, 1245245, 0, 0, 1310720, 0, 0, 1310721, 0, 0, 1310781, 0, 0, 1376256, 0, 0, 1376257, 0, 0, 1376278, 0, 0, 1376279, 0, 0, 1376280, 0, 0, 1376281, 0, 0, 1376282, 0, 0, 1376283, 0, 0, 1376284, 0, 0, 1376317, 0, 0, 1441792, 0, 0, 1441793, 0, 0, 1441853, 0, 0, 1507328, 0, 0, 1507329, 0, 0, 1507389, 0, 0, 1572864, 0, 0, 1572865, 0, 0, 1572925, 0, 0, 1638400, 0, 0, 1638401, 0, 0, 1638461, 0, 0, 1703936, 0, 0, 1703937, 0, 0, 1703997, 0, 0, 1769472, 0, 0, 1769473, 0, 0, 1769533, 0, 0, 1835008, 0, 0, 1835009, 0, 0, 1835069, 0, 0, 1900544, 0, 0, 1900545, 0, 0, 1900605, 0, 0, 1966080, 0, 0, 1966081, 0, 0, 1966141, 0, 0, 2031616, 0, 0, 2031617, 0, 0, 2031677, 0, 0, 2097152, 0, 0, 2097153, 0, 0, 2097213, 0, 0, 2162688, 0, 0, 2162689, 0, 0, 2162749, 0, 0, 2228224, 0, 0, 2228225, 0, 0, 2228285, 0, 0, 2228286, 0, 0, 2293760, 0, 0, 2293761, 0, 0, 2293762, 0, 0, 2293763, 0, 0, 2293764, 0, 0, 2293765, 0, 0, 2293766, 0, 0, 2293767, 0, 0, 2293768, 0, 0, 2293769, 0, 0, 2293770, 0, 0, 2293771, 0, 0, 2293772, 0, 0, 2293773, 0, 0, 2293774, 0, 0, 2293775, 0, 0, 2293776, 0, 0, 2293777, 0, 0, 2293778, 0, 0, 2293779, 0, 0, 2293780, 0, 0, 2293781, 0, 0, 2293782, 0, 0, 2293783, 0, 0, 2293784, 0, 0, 2293785, 0, 0, 2293786, 0, 0, 2293787, 0, 0, 2293788, 0, 0, 2293789, 0, 0, 2293790, 0, 0, 2293791, 0, 0, 2293792, 0, 0, 2293793, 0, 0, 2293794, 0, 0, 2293795, 0, 0, 2293796, 0, 0, 2293797, 0, 0, 2293798, 0, 0, 2293799, 0, 0, 2293800, 0, 0, 2293801, 0, 0, 2293802, 0, 0, 2293803, 0, 0, 2293804, 0, 0, 2293805, 0, 0, 2293806, 0, 0, 2293807, 0, 0, 2293808, 0, 0, 2293809, 0, 0, 2293810, 0, 0, 2293811, 0, 0, 2293812, 0, 0, 2293813, 0, 0, 2293814, 0, 0, 2293815, 0, 0, 2293816, 0, 0, 2293817, 0, 0, 2293818, 0, 0, 2293819, 0, 0, 2293820, 0, 0, 2293821, 0, 0, 2293822, 0, 0, 2359296, 0, 0, 2359297, 0, 0, 2359298, 0, 0, 2359299, 0, 0, 2359300, 0, 0, 2359301, 0, 0, 2359302, 0, 0, 2359303, 0, 0, 2359304, 0, 0, 2359305, 0, 0, 2359306, 0, 0, 2359307, 0, 0, 2359308, 0, 0, 2359309, 0, 0, 2359310, 0, 0, 2359311, 0, 0, 2359312, 0, 0, 2359313, 0, 0, 2359314, 0, 0, 2359315, 0, 0, 2359316, 0, 0, 2359317, 0, 0, 2359318, 0, 0, 2359319, 0, 0, 2359320, 0, 0, 2359321, 0, 0, 2359322, 0, 0, 2359323, 0, 0, 2359324, 0, 0, 2359325, 0, 0, 2359326, 0, 0, 2359327, 0, 0, 2359328, 0, 0, 2359329, 0, 0, 2359330, 0, 0, 2359331, 0, 0, 2359332, 0, 0, 2359333, 0, 0, 2359334, 0, 0, 2359335, 0, 0, 2359336, 0, 0, 2359337, 0, 0, 2359338, 0, 0, 2359339, 0, 0, 2359340, 0, 0, 2359341, 0, 0, 2359342, 0, 0, 2359343, 0, 0, 2359344, 0, 0, 2359345, 0, 0, 2359346, 0, 0, 2359347, 0, 0, 2359348, 0, 0, 2359349, 0, 0, 2359350, 0, 0, 2424840, 0, 0, 2424841, 0, 0, 2424842, 0, 0, 2424843, 0, 0, 2424844, 0, 0, 2424845, 0, 0, 2424846, 0, 0, 2424847, 0, 0, 2424848, 0, 0 )
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource( 2 )
+
+[node name="STATIC_BODY_2D" parent="." instance=ExtResource( 3 )]
+position = Vector2( 228, 440 )
+
+[node name="STATIC_BODY_2D2" parent="." instance=ExtResource( 3 )]
+position = Vector2( 596, 228 )
+rotation = 0.00809944
+script = SubResource( 3 )
+SPEED = 200.0
+
+[node name="KINEMATIC_BODY_2D" type="KinematicBody2D" parent="."]
+position = Vector2( 296, 412 )
+script = ExtResource( 8 )
+FRICTION = 0.388
+
+[node name="circle" type="CollisionShape2D" parent="KINEMATIC_BODY_2D"]
+position = Vector2( -4.14459, -39.9646 )
+shape = SubResource( 4 )
+script = ExtResource( 1 )
+
+[node name="circle2" type="CollisionShape2D" parent="KINEMATIC_BODY_2D"]
+position = Vector2( -4, -20 )
+shape = SubResource( 5 )
+script = SubResource( 10 )
+
+[node name="poly" type="CollisionPolygon2D" parent="KINEMATIC_BODY_2D"]
+position = Vector2( 4, -3.05176e-05 )
+scale = Vector2( 2.0625, 2.64063 )
+polygon = PoolVector2Array( -3.87878, -25.7514, -11.6364, -12.1183, -15.5152, -12.1183, -13.5758, -6.05914, -3.87878, -13.6331, 3.87878, -6.05916, 7.75757, -12.1183, 1.93939, -10.6035 )
+disabled = true
+script = ExtResource( 6 )
+
+[node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="KINEMATIC_BODY_2D"]
+
+[node name="Timer" type="Timer" parent="KINEMATIC_BODY_2D"]
+wait_time = 10.709
+one_shot = true
+autostart = true
+
+[node name="crossair" type="Sprite" parent="KINEMATIC_BODY_2D"]
+position = Vector2( 84.4127, -1.77852 )
+texture = ExtResource( 7 )
+
+[editable path="STATIC_BODY_2D2"]

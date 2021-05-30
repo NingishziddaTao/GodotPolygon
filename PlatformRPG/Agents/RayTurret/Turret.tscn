@@ -1,0 +1,46 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Agents/RayTurret/Turret.gd" type="Script" id=1]
+[ext_resource path="res://icon.png" type="Texture" id=2]
+[ext_resource path="res://Equipment/Bullet/Bullet.tscn" type="PackedScene" id=3]
+
+
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 21.6287, 22.0748 )
+
+[sub_resource type="CircleShape2D" id=2]
+radius = 0.01
+
+[node name="Turret" type="KinematicBody2D"]
+position = Vector2( 55.2136, 37.6254 )
+collision_layer = 7
+collision_mask = 3
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+detect_radius = 250
+fire_rate = 0.2
+Bullet = ExtResource( 3 )
+
+[node name="Sprite" type="Sprite" parent="."]
+scale = Vector2( 0.7, 0.7 )
+texture = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="Visibility" type="Area2D" parent="."]
+collision_layer = 15
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Visibility"]
+shape = SubResource( 2 )
+
+[node name="ShootTimer" type="Timer" parent="."]
+one_shot = true
+autostart = true
+[connection signal="body_entered" from="Visibility" to="." method="_on_Visibility_body_entered"]
+[connection signal="body_exited" from="Visibility" to="." method="_on_Visibility_body_exited"]
+[connection signal="timeout" from="ShootTimer" to="." method="_on_ShootTimer_timeout"]

@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://TileMap/TileMap.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Bouncer-K/Bouncer-K.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Main.gd" type="Script" id=4]
+
+[sub_resource type="Environment" id=1]
+background_mode = 4
+ambient_light_color = Color( 1, 1, 1, 1 )
+auto_exposure_enabled = true
+glow_enabled = true
+glow_intensity = 0.5
+glow_strength = 0.7
+glow_blend_mode = 0
+adjustment_brightness = 1.23
+adjustment_contrast = 3.06
+adjustment_saturation = 3.63
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource( 4 )
+
+[node name="TileMap" parent="." instance=ExtResource( 2 )]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource( 1 )
+
+[node name="Bouncer-K" parent="." instance=ExtResource( 3 )]
+position = Vector2( 151.332, 358.402 )

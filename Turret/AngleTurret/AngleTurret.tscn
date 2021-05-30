@@ -1,0 +1,26 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://AngleTurret/AngleTurret.gd" type="Script" id=1]
+
+[node name="AngleTurret" type="StaticBody2D"]
+script = ExtResource( 1 )
+turn_speed = 5.0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PoolVector2Array( -6.12965, -5.38194, -6.12965, 4.92073, 3.52908, 5.56464, 6.74867, 0.627953, 3.52909, -4.95266 )
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+polygon = PoolVector2Array( 11.4733, -3.82247, 11.8607, 2.18258, 0.431747, 2.37629, 32, 8, -40, 32, -40, -40, 32, -8, 0.431747, -3.43505 )
+
+[node name="pos" type="Position2D" parent="."]
+position = Vector2( 27.1426, 11.8584 )
+
+[node name="Polygon2D" type="Polygon2D" parent="pos"]
+visible = false
+position = Vector2( 2.6351, 1.84464 )
+polygon = PoolVector2Array( -3.53284, 5.60934, -0.107086, -2.03275, -3.0058, -3.61386 )
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.138
+autostart = true
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

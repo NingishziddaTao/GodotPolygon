@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://TransformTurret/TransformTurret.gd" type="Script" id=1]
+
+[node name="TranformTurret" type="Polygon2D"]
+position = Vector2( 511.217, 318.09 )
+polygon = PoolVector2Array( 100.816, -0.277664, -1.32297, -51.3472, -60.9041, -1.82523, 0.998352, 36.8638 )
+script = ExtResource( 1 )
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.042
+autostart = true
+
+[node name="pos" type="Position2D" parent="."]
+position = Vector2( 150.674, 0 )
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

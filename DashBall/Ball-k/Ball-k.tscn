@@ -1,0 +1,68 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://Ball-k/Ball-k.gd" type="Script" id=1]
+[ext_resource path="res://crossair.png" type="Texture" id=2]
+[ext_resource path="res://Ball-k/mats/K-PolyBak.vs" type="Script" id=3]
+[ext_resource path="res://Ball-k/mats/k-circle.vs" type="Script" id=4]
+[ext_resource path="res://Ball-k/mats/cayote.gd" type="Script" id=5]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 34.0
+
+[sub_resource type="Animation" id=2]
+resource_name = "fall"
+
+[sub_resource type="Animation" id=3]
+resource_name = "idle"
+
+[sub_resource type="Animation" id=4]
+resource_name = "jump"
+
+[sub_resource type="Animation" id=5]
+resource_name = "run"
+
+[node name="Ball-k" type="KinematicBody2D"]
+script = ExtResource( 1 )
+rotation_speed = 4.0
+
+[node name="circle" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+script = ExtResource( 4 )
+
+[node name="poly" type="CollisionPolygon2D" parent="."]
+visible = false
+position = Vector2( 8, 32 )
+scale = Vector2( 2.0625, 2.64063 )
+polygon = PoolVector2Array( 5.04242, -27.2662, -10.4727, -27.2662, -18.2303, -36.355, -11.6364, -21.2071, 3.87879, -21.2071, 12.8, -36.355 )
+disabled = true
+script = ExtResource( 3 )
+
+[node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 10.709
+one_shot = true
+autostart = true
+
+[node name="crossair" type="Sprite" parent="."]
+position = Vector2( 78.9474, -30.9474 )
+texture = ExtResource( 2 )
+
+[node name="cayote" type="Position2D" parent="."]
+script = ExtResource( 5 )
+__meta__ = {
+"_gizmo_extents_": 28.2
+}
+cast_to = Vector2( 0, 50 )
+alpha = false
+yOffset = 0
+
+[node name="crossair2" type="Sprite" parent="cayote"]
+position = Vector2( 4.57764e-05, 52.2105 )
+texture = ExtResource( 2 )
+
+[node name="anim" type="AnimationPlayer" parent="."]
+anims/fall = SubResource( 2 )
+anims/idle = SubResource( 3 )
+anims/jump = SubResource( 4 )
+anims/run = SubResource( 5 )

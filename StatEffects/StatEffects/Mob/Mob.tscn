@@ -1,0 +1,149 @@
+[gd_scene load_steps=16 format=2]
+
+[ext_resource path="res://Mob/Mob.gd" type="Script" id=1]
+[ext_resource path="res://crossair.png" type="Texture" id=2]
+[ext_resource path="res://Parents/KINEMATIC_BODY_2D/mats/K-PolyBak.vs" type="Script" id=3]
+[ext_resource path="res://Parents/KINEMATIC_BODY_2D/mats/k-circle.vs" type="Script" id=4]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 20.0
+
+[sub_resource type="CircleShape2D" id=2]
+radius = 15.0
+
+[sub_resource type="VisualScriptFunction" id=3]
+
+[sub_resource type="VisualScriptFunctionCall" id=4]
+_default_input_values = [ Vector2( 0, 0 ), 0.0, Color( 1, 1, 1, 1 ) ]
+base_type = "CollisionShape2D"
+argument_cache = {
+"args": [ {
+"class_name": "",
+"hint": 0,
+"hint_string": "",
+"name": "position",
+"type": 5,
+"usage": 7
+}, {
+"class_name": "",
+"hint": 0,
+"hint_string": "",
+"name": "radius",
+"type": 3,
+"usage": 7
+}, {
+"class_name": "",
+"hint": 0,
+"hint_string": "",
+"name": "color",
+"type": 14,
+"usage": 7
+} ],
+"default_args": [  ],
+"flags": 1,
+"id": 0,
+"name": "",
+"return": {
+"class_name": "",
+"hint": 0,
+"hint_string": "",
+"name": "",
+"type": 0,
+"usage": 7
+}
+}
+function = "draw_circle"
+
+[sub_resource type="VisualScriptPropertyGet" id=5]
+property = "shape"
+
+[sub_resource type="VisualScriptPropertyGet" id=6]
+_default_input_values = [ null ]
+set_mode = 2
+base_type = "CircleShape2D"
+base_script = ""
+type_cache = 3
+property = "radius"
+
+[sub_resource type="VisualScript" id=7]
+data = {
+"base_type": "CollisionShape2D",
+"functions": [ {
+"data_connections": [ 5, 0, 6, 0, 6, 0, 1, 1 ],
+"function_id": 0,
+"name": "_draw",
+"nodes": [ 0, Vector2( 172.84, 98.7654 ), SubResource( 3 ), 1, Vector2( 296.296, 172.84 ), SubResource( 4 ), 5, Vector2( -222.222, 246.914 ), SubResource( 5 ), 6, Vector2( 0, 222.222 ), SubResource( 6 ) ],
+"scroll": Vector2( -367.062, 47.8333 ),
+"sequence_connections": [ 0, 0, 1 ]
+}, {
+"data_connections": [  ],
+"function_id": -1,
+"name": "f_312843592",
+"nodes": [  ],
+"scroll": Vector2( -222.222, 0 ),
+"sequence_connections": [  ]
+} ],
+"is_tool_script": true,
+"signals": [  ],
+"variables": [ {
+"default_value": null,
+"export": false,
+"hint": 0,
+"hint_string": "",
+"name": "rad",
+"type": 0,
+"usage": 7
+} ],
+"vs_unify": true
+}
+
+[sub_resource type="Animation" id=8]
+resource_name = "fall"
+
+[sub_resource type="Animation" id=9]
+resource_name = "idle"
+
+[sub_resource type="Animation" id=10]
+resource_name = "jump"
+
+[sub_resource type="Animation" id=11]
+resource_name = "run"
+
+[node name="Mob" type="KinematicBody2D"]
+script = ExtResource( 1 )
+yWidth = 70
+
+[node name="circle" type="CollisionShape2D" parent="."]
+position = Vector2( 0, -32 )
+shape = SubResource( 1 )
+script = ExtResource( 4 )
+
+[node name="circle2" type="CollisionShape2D" parent="."]
+position = Vector2( 0, -16 )
+shape = SubResource( 2 )
+script = SubResource( 7 )
+
+[node name="poly" type="CollisionPolygon2D" parent="."]
+visible = false
+position = Vector2( 8, 32 )
+scale = Vector2( 2.0625, 2.64063 )
+polygon = PoolVector2Array( 5.04242, -27.2662, -10.4727, -27.2662, -18.2303, -36.355, -11.6364, -21.2071, 3.87879, -21.2071, 12.8, -36.355 )
+disabled = true
+script = ExtResource( 3 )
+
+[node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 5.0
+autostart = true
+
+[node name="crossair" type="Sprite" parent="."]
+position = Vector2( 0, -72 )
+texture = ExtResource( 2 )
+
+[node name="anim" type="AnimationPlayer" parent="."]
+anims/fall = SubResource( 8 )
+anims/idle = SubResource( 9 )
+anims/jump = SubResource( 10 )
+anims/run = SubResource( 11 )
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

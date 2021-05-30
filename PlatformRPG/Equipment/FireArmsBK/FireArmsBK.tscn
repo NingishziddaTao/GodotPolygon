@@ -1,0 +1,65 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://Equipment/FireArmsBK/FireArmsBK.gd" type="Script" id=1]
+[ext_resource path="res://Equipment/Projectile/Projectile.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Equipment/LaserBeam/Beam.png" type="Texture" id=3]
+[ext_resource path="res://Equipment/LaserBeam/Begin.png" type="Texture" id=4]
+[ext_resource path="res://icon.png" type="Texture" id=5]
+[ext_resource path="res://crossair.png" type="Texture" id=6]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 4000.0
+
+[sub_resource type="ParticlesMaterial" id=2]
+flag_disable_z = true
+gravity = Vector3( 0, 98, 0 )
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+
+[node name="FireArmsBK" type="Node2D"]
+script = ExtResource( 1 )
+bullet = ExtResource( 2 )
+
+[node name="sight" type="Area2D" parent="."]
+
+[node name="circle" type="CollisionShape2D" parent="sight"]
+shape = SubResource( 1 )
+
+[node name="beam" type="Sprite" parent="."]
+texture = ExtResource( 3 )
+centered = false
+offset = Vector2( 12, -6 )
+region_enabled = true
+region_rect = Rect2( 4.24853, 5.62257, 91.7015, 12.8986 )
+
+[node name="begin" type="Sprite" parent="."]
+texture = ExtResource( 4 )
+
+[node name="end" type="Position2D" parent="."]
+position = Vector2( 100.138, -0.790569 )
+
+[node name="part" type="Particles2D" parent="end"]
+visible = false
+process_material = SubResource( 2 )
+
+[node name="icon" type="Sprite" parent="end"]
+visible = false
+position = Vector2( -2.24173, 8.47245 )
+texture = ExtResource( 5 )
+
+[node name="muzzle" type="Position2D" parent="."]
+
+[node name="line" type="Line2D" parent="."]
+points = PoolVector2Array( 0, 0, 100, 0 )
+joint_mode = 2
+end_cap_mode = 2
+
+[node name="ray" type="RayCast2D" parent="."]
+enabled = true
+cast_to = Vector2( 200, 0 )
+
+[node name="crossair" type="Sprite" parent="."]
+position = Vector2( 106.868, -0.677811 )
+texture = ExtResource( 6 )
+[connection signal="body_entered" from="sight" to="." method="_on_sight_body_entered"]
+[connection signal="body_exited" from="sight" to="." method="_on_sight_body_exited"]

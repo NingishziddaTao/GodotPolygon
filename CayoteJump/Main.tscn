@@ -1,0 +1,70 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Parents/KINEMATIC_BODY_2D/KINEMATIC_BODY_2D.tscn" type="PackedScene" id=1]
+[ext_resource path="res://TileMap/TileMap.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Parents/STATIC_BODY_2D/STATIC_BODY_2D.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Main.gd" type="Script" id=4]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends StaticBody2D
+
+onready var start_position = position
+var velocity:Vector2
+export var SPEED:float = 200
+var speed = SPEED
+onready var circle_radius = $circle.shape.radius
+
+func _ready() -> void:
+    pass
+
+func _physics_process(delta: float) -> void:
+    pass
+    
+func _draw() -> void:
+    pass
+"
+
+[sub_resource type="Environment" id=2]
+background_mode = 4
+ambient_light_color = Color( 1, 1, 1, 1 )
+auto_exposure_enabled = true
+glow_enabled = true
+glow_intensity = 0.5
+glow_strength = 0.7
+glow_blend_mode = 0
+adjustment_brightness = 1.23
+adjustment_contrast = 3.06
+adjustment_saturation = 3.63
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource( 4 )
+
+[node name="KINEMATIC_BODY_2D" parent="." instance=ExtResource( 1 )]
+position = Vector2( 198.583, 426.026 )
+
+[node name="Static" type="Node" parent="."]
+
+[node name="STATIC_BODY_2D4" parent="Static" instance=ExtResource( 3 )]
+position = Vector2( 1013.48, 139.357 )
+
+[node name="STATIC_BODY_2D" parent="Static" instance=ExtResource( 3 )]
+position = Vector2( 71.1644, 440.706 )
+script = SubResource( 1 )
+SPEED = 200.0
+
+[node name="STATIC_BODY_2D5" parent="Static" instance=ExtResource( 3 )]
+position = Vector2( -55.5932, 170.449 )
+
+[node name="STATIC_BODY_2D2" parent="Static" instance=ExtResource( 3 )]
+position = Vector2( 779.094, 412.006 )
+
+[node name="STATIC_BODY_2D3" parent="Static" instance=ExtResource( 3 )]
+position = Vector2( 867.586, 273.29 )
+
+[node name="TileMap" parent="." instance=ExtResource( 2 )]
+tile_data = PoolIntArray( 0, 0, 0, 1, 0, 0, 2, 0, 0, 3, 0, 0, 4, 0, 0, 5, 0, 0, 6, 0, 0, 7, 0, 0, 8, 0, 0, 9, 0, 0, 10, 0, 0, 11, 0, 0, 12, 0, 0, 13, 0, 0, 14, 0, 0, 15, 0, 0, 16, 0, 0, 17, 0, 0, 18, 0, 0, 19, 0, 0, 20, 0, 0, 21, 0, 0, 22, 0, 0, 23, 0, 0, 24, 0, 0, 25, 0, 0, 26, 0, 0, 27, 0, 0, 28, 0, 0, 29, 0, 0, 30, 0, 0, 31, 0, 0, 32, 0, 0, 33, 0, 0, 34, 0, 0, 35, 0, 0, 36, 0, 0, 37, 0, 0, 38, 0, 0, 39, 0, 0, 40, 0, 0, 41, 0, 0, 42, 0, 0, 43, 0, 0, 44, 0, 0, 45, 0, 0, 46, 0, 0, 47, 0, 0, 48, 0, 0, 49, 0, 0, 50, 0, 0, 51, 0, 0, 52, 0, 0, 53, 0, 0, 54, 0, 0, 55, 0, 0, 56, 0, 0, 57, 0, 0, 58, 0, 0, 59, 0, 0, 60, 0, 0, 61, 0, 0, 62, 0, 0, 63, 0, 0, 64, 0, 0, 65, 0, 0, 65536, 0, 0, 65601, 0, 0, 131072, 0, 0, 131137, 0, 0, 196608, 0, 0, 196673, 0, 0, 262144, 0, 0, 262209, 0, 0, 327680, 0, 0, 327745, 0, 0, 393216, 0, 0, 393281, 0, 0, 458752, 0, 0, 458817, 0, 0, 524288, 0, 0, 524353, 0, 0, 589824, 0, 0, 589889, 0, 0, 655360, 0, 0, 655425, 0, 0, 720896, 0, 0, 720961, 0, 0, 786432, 0, 0, 786497, 0, 0, 851968, 0, 0, 852033, 0, 0, 917504, 0, 0, 917569, 0, 0, 983040, 0, 0, 983105, 0, 0, 1048576, 0, 0, 1048641, 0, 0, 1114112, 0, 0, 1114177, 0, 0, 1179648, 0, 0, 1179713, 0, 0, 1245184, 0, 0, 1245249, 0, 0, 1310720, 0, 0, 1310785, 0, 0, 1376256, 0, 0, 1376321, 0, 0, 1441792, 0, 0, 1441857, 0, 0, 1507328, 0, 0, 1507393, 0, 0, 1572864, 0, 0, 1572929, 0, 0, 1638400, 0, 0, 1638465, 0, 0, 1703936, 0, 0, 1704001, 0, 0, 1769472, 0, 0, 1769537, 0, 0, 1835008, 0, 0, 1835073, 0, 0, 1900544, 0, 0, 1900609, 0, 0, 1966080, 0, 0, 1966145, 0, 0, 2031616, 0, 0, 2031681, 0, 0, 2097152, 0, 0, 2097217, 0, 0, 2162688, 0, 0, 2162753, 0, 0, 2228224, 0, 0, 2228289, 0, 0, 2293760, 0, 0, 2293825, 0, 0, 2359296, 0, 0, 2359297, 0, 0, 2359298, 0, 0, 2359299, 0, 0, 2359300, 0, 0, 2359301, 0, 0, 2359302, 0, 0, 2359303, 0, 0, 2359304, 0, 0, 2359305, 0, 0, 2359306, 0, 0, 2359307, 0, 0, 2359308, 0, 0, 2359309, 0, 0, 2359310, 0, 0, 2359311, 0, 0, 2359312, 0, 0, 2359313, 0, 0, 2359314, 0, 0, 2359315, 0, 0, 2359316, 0, 0, 2359317, 0, 0, 2359318, 0, 0, 2359319, 0, 0, 2359320, 0, 0, 2359321, 0, 0, 2359322, 0, 0, 2359323, 0, 0, 2359324, 0, 0, 2359325, 0, 0, 2359326, 0, 0, 2359327, 0, 0, 2359328, 0, 0, 2359329, 0, 0, 2359330, 0, 0, 2359331, 0, 0, 2359332, 0, 0, 2359333, 0, 0, 2359334, 0, 0, 2359335, 0, 0, 2359336, 0, 0, 2359337, 0, 0, 2359338, 0, 0, 2359339, 0, 0, 2359340, 0, 0, 2359341, 0, 0, 2359342, 0, 0, 2359343, 0, 0, 2359344, 0, 0, 2359345, 0, 0, 2359346, 0, 0, 2359347, 0, 0, 2359348, 0, 0, 2359349, 0, 0, 2359350, 0, 0, 2359351, 0, 0, 2359352, 0, 0, 2359353, 0, 0, 2359354, 0, 0, 2359355, 0, 0, 2359356, 0, 0, 2359357, 0, 0, 2359358, 0, 0, 2359359, 0, 0, 2359360, 0, 0, 2359361, 0, 0 )
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource( 2 )
+
+[editable path="KINEMATIC_BODY_2D"]
